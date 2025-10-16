@@ -1,0 +1,15 @@
+version: 2
+
+models: 
+  - name: oliver_dim_customer
+    description: "Oliver customer dimension" 
+  - name: oliver_dim_date
+    description: "Oliver date dimension" 
+  - name: oliver_dim_employee
+    description: "Oliver employee dimension" 
+  - name: oliver_dim_product
+    description: "Oliver product dimension" 
+  - name: oliver_dim_store
+    description: "Oliver store dimension" 
+  - name: fact_sales
+    description: "Oliver sales fact"
