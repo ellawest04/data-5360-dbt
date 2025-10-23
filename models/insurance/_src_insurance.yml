@@ -1,12 +1,12 @@
 version: 2
 
-sources: 
+sources:
   - name: insurance_landing
     database: ellaelder
     schema: insurance_dw_source
     tables:
       - name: agents
-      - name : claims
+      - name: claims
       - name: customers
       - name: policies
-      
+      - name: customer_service_interactions
