@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: eco_landing
+    database: ellaelder
+    schema: eco_essentials_transactional_db
+    tables:
+      - name: customer
+      - name: orders
+      - name: order_line
+      - name: promotional_campaign
+      - name: product
+
+  - name: email_landing
+    database: ellaelder
+    schema: ecosystems_dw_source
+    tables: 
+      - name: marketing_emails
