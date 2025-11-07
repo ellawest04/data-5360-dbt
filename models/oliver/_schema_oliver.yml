@@ -3,6 +3,10 @@ version: 2
 models: 
   - name: oliver_dim_customer
     description: "Oliver customer dimension" 
+    columns:
+      - name: customer_key
+        tests:
+          - unique
   - name: oliver_dim_date
     description: "Oliver date dimension" 
   - name: oliver_dim_employee
@@ -13,10 +17,35 @@ models:
     description: "Oliver store dimension" 
   - name: fact_sales
     description: "Oliver sales fact"
+    columns:
+      - name: customer_key
+        description: "A foreign key to the customer dimension"
+        tests:
+          - not_null
   - name: stg_employee_certifications
     description: |
       Staging model for employee certifications
+    columns:
+      - name: certification_name
+        tests:
+          - accepted_values:
+              values:
+                - "Product Knowledge Level 2"
+                - "Point of Sale Operations"
+                - "Conflict Resolution"
+                - "Leadership and Coaching"
+                - "Inventory Management"
+                - "Cash Handling and Security"
+                - "Strategic Retail Operations"
+                - "Customer Service Excellence"
+                - "Workplace Safety"
   - name: fact_certification
     description: |
       Employee Certification information.
       The grain of this table is one employee doing one certification
+    columns:
+      - name: employee_key
+        tests:
+          - relationships:
+              to: ref('olver_dim_employee') # the model you want to compare to
+              field: employee_key # the field on the model you want to compare to
