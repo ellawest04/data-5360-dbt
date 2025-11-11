@@ -3,16 +3,61 @@ version: 2
 models: 
   - name: eco_dim_customer
     description: "customer dimension" 
+    columns:
+      - name: customer_key
+        tests:
+          - unique
   - name: eco_dim_date
     description: " date dimension" 
+    columns:
+      - name: date_key
+        tests:
+          - unique
   - name: eco_dim_product
     description: "product dimension" 
+    columns:
+      - name: product_key
+        tests:
+          - unique
+      - name: product_type
+        tests:
+          - accepted_values:
+              values:
+                - "pot"
+                - "utensil"
+                - "storage"
+                - "accessory"
+                - "cutting_board"
+                - "pan"
+
   - name: eco_dim_campaign
-    description: "campaign dimension" 
+    description: "campaign dimension"
+    columns:
+      - name: campaign_key
+        tests:
+          - unique 
   - name: eco_dim_email
     description: "email dimension" 
+    columns:
+      - name: email_key
+        tests:
+          - not_null
   - name: eco_fact_sales
     description: "sales fact"
+    columns:
+      - name: customer_key
+        description: "A foreign key to the customer dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('eco_dim_customer') # the model you want to compare to
+              field: customer_key # the field on the model you want to compare to
   - name: eco_fact_email_event
     description: "email event fact"
+    columns:
+      - name: email_key
+        description: "A foreign key to the email dimension"
+        tests:
+          - not_null
+
 
